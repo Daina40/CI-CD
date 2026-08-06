@@ -8,7 +8,7 @@ on:
 
 jobs:
   Test: 
-    runs-on: ubuntu_latest
+    runs-on: ubuntu-latest
 
     steps: 
       - name: Git Clone
@@ -27,5 +27,5 @@ jobs:
       
       - name: Print the Hello.txt file
         run: cat hello.txt
-        
+
           
