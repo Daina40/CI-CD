@@ -1,29 +1,27 @@
-name: CICD Pipeline
+name: Monitor EC2
 
-on: 
-  push: 
-    branches:
-      - main
+on:
+  workflow_dispatch:
 
 jobs:
-  Test: 
+  Test:
     runs-on: ubuntu-latest
 
-    steps: 
+    steps:
       - name: Git Clone
-        uses: actions/checkout@v7
-      
-      - name: install node js
-        uses: actions/setup-node@v7
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
-      
+
       - name: Install Packages
         run: npm install
-      
+
       - name: Run the Test
         run: npm run test
-      
+
       - name: Print the Hello.txt file
         run: cat hello.txt
 
@@ -31,12 +29,13 @@ jobs:
     runs-on: self-hosted
     needs: Test
 
-    steps: 
-      - name: Creat a folder
+    steps:
+      - name: Create a folder
         run: |
           cd ~
           pwd
-          mkdir monitor
+          mkdir -p monitor
           cd monitor
           touch hello.txt
           echo "Hello World" > hello.txt
+          cat hello.txt
