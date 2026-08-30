@@ -45,7 +45,7 @@ jobs:
             pwd
             whoami
 
-  Deploy:
+  Deploy2:
     runs-on: self-hosted
     needs: Test
 
