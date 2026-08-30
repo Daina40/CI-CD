@@ -5,7 +5,6 @@ on:
     branches:
       - main
 
-
 jobs:
   Test: 
     runs-on: ubuntu-latest
@@ -45,3 +44,17 @@ jobs:
             sudo apt update
             pwd
             whoami
+
+  Deploy:
+    runs-on: self-hosted
+    needs: Test
+
+    steps: 
+      - name: Creat a folder
+        run: |
+          cd ~
+          pwd
+          mkdir ostad
+          cd ostad
+          touch hello.txt
+          echo "Hello World" > hello.txt
