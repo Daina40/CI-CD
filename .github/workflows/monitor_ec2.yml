@@ -27,20 +27,16 @@ jobs:
       - name: Print the Hello.txt file
         run: cat hello.txt
 
-# another job
   Deploy:
-    runs-on: ubuntu-latest 
-    needs: Test 
+    runs-on: self-hosted
+    needs: Test
 
     steps: 
-      - name: SSH Commands
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ vars.PORT}}
-          script: |
-            sudo apt update
-            pwd
-            whoami
+      - name: Creat a folder
+        run: |
+          cd ~
+          pwd
+          mkdir monitor
+          cd monitor
+          touch hello.txt
+          echo "Hello World" > hello.txt
